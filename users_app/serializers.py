@@ -3,7 +3,7 @@ from .models import User
 from .services import watermark_photo
 
 
-class UserSerializer(ModelSerializer):
+class UserRegisterSerializer(ModelSerializer):
 
     class Meta:
         model = User
@@ -21,3 +21,10 @@ class UserSerializer(ModelSerializer):
         user.save()
         watermark_photo(str(user.photo))
         return user
+
+
+class UserSerializer(ModelSerializer):
+    class Meta:
+
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'gender', 'photo', 'likes']

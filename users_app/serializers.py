@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from .models import User
+from .services import watermark_photo
 
 
 class UserSerializer(ModelSerializer):
@@ -18,4 +19,5 @@ class UserSerializer(ModelSerializer):
         user.set_password(validated_data["password"])
         user.email = validated_data['email']
         user.save()
+        watermark_photo(str(user.photo))
         return user

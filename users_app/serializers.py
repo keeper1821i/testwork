@@ -1,10 +1,11 @@
+from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from .models import User
 from .services import watermark_photo
 
 
 class UserRegisterSerializer(ModelSerializer):
-
+    """Сериализатор для регистрации пользователя"""
     class Meta:
         model = User
         fields = ['url', 'username', 'password', 'first_name', 'last_name', 'gender', 'photo', 'email']
@@ -24,7 +25,10 @@ class UserRegisterSerializer(ModelSerializer):
 
 
 class UserSerializer(ModelSerializer):
+    """Сериализатор для вывода списка пользователей"""
+    distance = serializers.DecimalField(decimal_places=3, max_digits=6)
     class Meta:
 
         model = User
-        fields = ['id', 'first_name', 'last_name', 'gender', 'photo', 'likes']
+        fields = ['id', 'first_name', 'last_name', 'gender', 'photo', 'likes', 'distance']
+

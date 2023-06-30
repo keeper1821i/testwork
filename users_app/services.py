@@ -10,4 +10,3 @@ def watermark_photo(input_image_path):
     base_image.paste(watermark, position)
     base_image.save('media/' + input_image_path)
 
-
